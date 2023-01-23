@@ -1,0 +1,50 @@
+<body>
+	<div>
+        <input id="inputName"/>
+        <button onclick="onUpper()">Hiện thị tên viết hoa</button>
+        <span id="showText" style="padding-left: 40px"></span>
+    </div>
+
+    <!-- table data -->
+    <div style="padding-top: 20px;">
+        <b> Danh sách tên bạn đã nhập là:</b>
+        <table id="myTable" style="margin-top: 10px;">
+            <tr>
+                <th>STT</td>
+                <th style="width: 250px;">Tên đã nhập</td>
+            </th>
+          </table>
+    </div>
+</body>
+
+<script>
+    const listNames = []
+    function onUpper(){
+        let inputNameVal = document.getElementById("inputName").value
+        if(inputNameVal === ''){
+            inputNameVal = "Bạn chưa nhập tên!"
+        }else{
+            onAddNameToTable(inputNameVal)
+            inputNameVal = 'XIN CHÀO: '+inputNameVal.toUpperCase()
+        }
+        document.getElementById("showText").innerHTML = inputNameVal
+    }
+
+    function onAddNameToTable(inputNameVal){
+        listNames.push(inputNameVal)
+        const table = document.getElementById("myTable");
+        const row = table.insertRow(listNames.length);
+        const cell1 = row.insertCell(0);
+        const cell2 = row.insertCell(1);
+        cell1.innerHTML = listNames.length;
+        cell2.innerHTML = inputNameVal;
+    }
+</script>
+
+<style>
+ table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 12px;
+ }
+</style>
